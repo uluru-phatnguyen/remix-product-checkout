@@ -1,0 +1,190 @@
+/*
+ * You probably want to just delete this file; it's just for the demo pages.
+ */
+ .remix-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: calc(100vh - env(safe-area-inset-bottom));
+}
+
+.remix-app > * {
+  width: 100%;
+}
+
+.remix-app__header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.remix-app__header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remix-app__header-home-link {
+  width: 106px;
+  height: 30px;
+  color: var(--color-foreground);
+}
+
+.remix-app__header-nav ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.remix-app__header-nav li {
+  font-weight: bold;
+}
+
+.remix-app__main {
+  flex: 1 1 100%;
+}
+
+.remix-app__footer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.remix-app__footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remix__page {
+  --gap: 1rem;
+  --space: 2rem;
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: var(--gap);
+  padding-top: var(--space);
+  padding-bottom: var(--space);
+}
+
+.object-contain {
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+.max-h-24 {
+  max-height: 6rem;
+}
+.max-h-48 {
+  max-height: 20rem;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.cart-icon {
+  position: absolute;
+  top: 1.8rem;
+  margin: 5px;
+  padding: 1px 3px;
+  min-width: 1.4rem;
+  text-align: center;
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255/var(--tw-text-opacity));
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.bg-red-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28/var(--tw-bg-opacity));
+}
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246/var(--tw-bg-opacity));
+}
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246/var(--tw-bg-opacity));
+}
+.btn-add-cart {
+  padding: 10px;
+  cursor: pointer;
+}
+.items-name {
+  font-weight: bold;
+  margin: 0px;
+}
+.items-desc {
+  text-overflow: ellipsis;
+  color: rgb(75 85 99/var(--tw-text-opacity));
+}
+.items-border {
+  border: 1px solid #e5e7eb;
+}
+.items-content {
+  padding: 0.5rem;
+}
+.items-footer {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246/var(--tw-bg-opacity));
+}
+
+@media print, screen and (min-width: 640px) {
+  .remix__page {
+    --gap: 2rem;
+    grid-auto-rows: unset;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .remix__page {
+    --gap: 4rem;
+  }
+}
+
+.remix__page > main > :first-child {
+  margin-top: 0;
+}
+
+.remix__page > main > :last-child {
+  margin-bottom: 0;
+}
+
+.remix__page > aside {
+  margin: 0;
+  padding: 1.5ch 2ch;
+  border: solid 1px var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.remix__page > aside > :first-child {
+  margin-top: 0;
+}
+
+.remix__page > aside > :last-child {
+  margin-bottom: 0;
+}
+
+.remix__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.remix__form > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
