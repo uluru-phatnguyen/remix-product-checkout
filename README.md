@@ -1,11 +1,13 @@
-# Build Sample Product Checkout based on Remix FullStack Framework
+# Build Sample Product Checkout
+
+- Built based on Remix FullStack Framework
 
 ## Tech stack:
 
 - Typescript
 - [Remix Fullstack Framework](https://remix.run/docs)
-- [Json-Rules-Engine](https://github.com/CacheControl/json-rules-engine)\
-- Unit Test: Not Yet
+- [Json-Rules-Engine](https://github.com/CacheControl/json-rules-engine)
+- Unit Test: [Vitest](https://vitest.dev)
 - CyPress: Not Yet
 
 ## Solution:
@@ -13,7 +15,7 @@
 - Using Json Rules Engine to configure Campaign program/ Promotion / Discount
 - Try apply to types: DEAL / DISCOUNT
 
-## TODO mprovement:
+## TODO Improvement:
 
 - Change Voucher Code to Logined User information
 - Define pattern to calculate price after apply promotion

@@ -104,13 +104,13 @@ export class RuleEngine {
   }
 
   async onAddRuleSuccess(rule: RuleProperties) {
-    console.log(`onAddRuleSuccess: ${JSON.stringify(rule)}`);
+    // console.log(`onAddRuleSuccess: ${JSON.stringify(rule)}`);
 
     // TODO: 1/ Get rules from Cache. 2/ Append rule name to rules. 3/ Clean cache by cache key. 4/ Add rules to cache
   }
 
   async onAddRuleFail(rule: RuleProperties) {
-    console.log(`onAddRuleFail: ${JSON.stringify(rule)}`);
+    // console.log(`onAddRuleFail: ${JSON.stringify(rule)}`);
 
     // TODO: 1/ Get rules from Cache. 2/ Remove cache by rule name. 3/ Clean cache by cache key. 4/ Add rules to cache
   }
@@ -129,7 +129,7 @@ export class RuleEngine {
   }
 
   async onRemoveRule(name: string) {
-    console.log(`onRemoveRule: ${name}`);
+    // console.log(`onRemoveRule: ${name}`);
 
     // TODO: 1/ Get rules from Cache. 2/ Remove cache by rule name. 3/ Clean cache by cache key. 4/ Add rules to cache
   }

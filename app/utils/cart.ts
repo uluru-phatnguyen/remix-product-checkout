@@ -1,8 +1,8 @@
 import type { Session } from '@remix-run/node';
 import { isArray } from 'class-validator';
-import { PizzaSize, SampleRuleEngines } from '~/data.server';
-import { getProduct } from '~/models/product.server';
-import { EVENT_TYPE, RuleEngine } from '~/utils/rule-engine';
+import { PizzaSize, SampleRuleEngines } from '../data.server';
+import { getProduct } from '../models/product.server';
+import { EVENT_TYPE, RuleEngine } from './rule-engine';
 import type { RuleResult, Event } from 'json-rules-engine';
 
 const ruleEngine = new RuleEngine();

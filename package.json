@@ -5,29 +5,41 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "test": "vitest"
   },
   "dependencies": {
     "@remix-run/node": "1.8.1",
     "@remix-run/react": "1.8.1",
     "@remix-run/serve": "1.8.1",
-    "react-icons": "4.7.1",
+    "class-validator": "0.13.2",
+    "dataloader": "2.1.0",
     "isbot": "3.6.5",
+    "json-rules-engine": "6.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "dataloader": "2.1.0",
-    "uuid": "9.0.0",
-    "class-validator": "0.13.2",
-    "json-rules-engine": "6.1.2"
+    "react-icons": "4.7.1"
   },
   "devDependencies": {
     "@remix-run/dev": "1.8.1",
     "@remix-run/eslint-config": "1.8.1",
+    "@testing-library/cypress": "8.0.7",
+    "@testing-library/dom": "8.19.0",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "14.4.3",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
+    "@vitejs/plugin-react": "3.0.0",
+    "cross-env": "7.0.3",
+    "cypress": "11.0.0",
     "eslint": "8.27.0",
+    "happy-dom": "8.1.0",
+    "start-server-and-test": "1.15.2",
     "typescript": "4.8.4",
-    "@types/uuid": "9.0.0"
+    "vite": "4.0.0",
+    "vite-tsconfig-paths": "4.0.2",
+    "vitest": "0.25.7"
   },
   "engines": {
     "node": ">=14"

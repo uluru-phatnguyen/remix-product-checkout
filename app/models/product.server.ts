@@ -1,4 +1,4 @@
-import { db } from '~/data.server';
+import { db } from '../data.server';
 
 export async function getAllProducts() {
   return await db.product.findMany();

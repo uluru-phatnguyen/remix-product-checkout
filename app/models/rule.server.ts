@@ -1,4 +1,4 @@
-import { RuleEngine } from '~/utils/rule-engine';
+import { RuleEngine } from '../utils/rule-engine';
 import { RuleProperties, TopLevelCondition } from 'json-rules-engine';
 
 export enum RuleOperator {

@@ -1,5 +1,5 @@
 import type { RuleProperties } from 'json-rules-engine';
-import { BOOLEAN_EXPRESSION, RULE_OPERATOR, EVENT_TYPE } from '~/utils/rule-engine';
+import { BOOLEAN_EXPRESSION, RULE_OPERATOR, EVENT_TYPE } from './utils/rule-engine';
 
 export enum PizzaSize {
   SMALL = 'S',
