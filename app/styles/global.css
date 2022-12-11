@@ -63,7 +63,7 @@ hr {
   margin-bottom: 2rem;
 }
 
-input:where([type="text"]),
+/* input:where([type="text"]), */
 input:where([type="search"]) {
   display: block;
   border: 1px solid var(--color-border);

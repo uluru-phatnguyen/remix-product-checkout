@@ -14,7 +14,7 @@ export default function Index() {
     <div className="remix_homepage">
       <main>
         <h2>Welcome to Remix Product!</h2>
-        <p>We're stoked that you're here. 🥳 2222</p>
+        <p>We're stoked that you're here. 🥳</p>
       </main>
     </div>
   );

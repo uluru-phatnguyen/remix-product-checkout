@@ -6,9 +6,46 @@ import {
   EngineResult,
 } from 'json-rules-engine';
 
+export enum BOOLEAN_EXPRESSION {
+  ALL = 'all',
+  ANY = 'any',
+}
+
+export enum EVENT_TYPE {
+  DISCOUNT = 'DISCOUNT',
+  DEAL = 'DEAL',
+}
+
+// https://github.com/CacheControl/json-rules-engine/blob/master/docs/rules.md#operators
+export enum RULE_OPERATOR {
+  /** String & Numberic */
+  EQUAL = 'equal',
+  NOT_EQUAL = 'notEqual',
+
+  /** Numberic */
+  LESS_THAN = 'lessThan',
+  LESS_THAN_INCLUSIVE = 'lessThanInclusive',
+  GREATER_THAN = 'greaterThan',
+  GREATER_THAN_INCLUSIVE = 'greaterThanInclusive',
+
+  /** Array */
+  IN = 'in',
+  NOT_IN = 'notIn',
+  CONTAINS = 'contains',
+  DOES_NOT_CONTAIN = 'doesNotContain',
+}
+
 interface RuleEngineOptions {
   rules?: Array<RuleProperties>;
   options?: EngineOptions;
+}
+
+interface BasicCondition {
+  fact: string;
+  operator: string;
+  value: number | string | Array<string>;
+  param?: Record<string, any>;
+  path?: string;
 }
 
 export class RuleEngine {

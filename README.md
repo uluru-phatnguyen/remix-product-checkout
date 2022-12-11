@@ -1,10 +1,37 @@
-# Welcome to Remix!
+# Build Sample Product Checkout based on Remix FullStack Framework
 
-- [Remix Docs](https://remix.run/docs)
+## Tech stack:
+
+- Typescript
+- [Remix Fullstack Framework](https://remix.run/docs)
+- [Json-Rules-Engine](https://github.com/CacheControl/json-rules-engine)\
+- Unit Test: Not Yet
+- CyPress: Not Yet
+
+## Solution:
+
+- Using Json Rules Engine to configure Campaign program/ Promotion / Discount
+- Try apply to types: DEAL / DISCOUNT
+
+## TODO mprovement:
+
+- Change Voucher Code to Logined User information
+- Define pattern to calculate price after apply promotion
+- Apply type of all of objects in RuleEngine
+
+## How to Testing
+
+- Go to Products page
+- Select item to cart
+- Go to cart page
+- Apply Voucher Code = Company Name
 
 ## Development
-
 From your terminal:
+
+```sh
+npm install
+```
 
 ```sh
 npm run dev
@@ -36,18 +63,3 @@ Make sure to deploy the output of `remix build`
 
 - `build/`
 - `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```

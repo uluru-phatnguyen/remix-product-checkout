@@ -9,8 +9,20 @@ import {
   ScrollRestoration,
   useCatch,
   useLocation,
+  useLoaderData,
 } from "@remix-run/react";
 import * as React from "react";
+import { FaShoppingCart } from "react-icons/fa";
+
+import type { LoaderFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { getSession, commitSession } from "~/session.server";
+import { getCartItemsCount } from "~/utils/cart";
+
+type LoaderData = {
+  cartItemsCount: number;
+};
+
 
 import pizzaRemixStyles from "~/styles/pizza.css";
 import globalStylesUrl from "~/styles/global.css";
@@ -34,6 +46,17 @@ export const meta: MetaFunction = () => ({
   charset: "utf-8",
   viewport: "width=device-width,initial-scale=1",
 });
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get('Cookie'));
+
+  const cartItemsCount = await getCartItemsCount(session);
+
+  return json<LoaderData>(
+    { cartItemsCount },
+    { headers: { "set-cookie": await commitSession(session) } }
+  );
+};
 
 /**
  * The root module's default export is a component that renders the current
@@ -76,6 +99,8 @@ function Document({
 }
 
 function Layout({ children }: React.PropsWithChildren<{}>) {
+  const { cartItemsCount = 0 } = useLoaderData<LoaderData>() || {};
+
   return (
     <div className="remix-app">
       <header className="remix-app__header">
@@ -92,11 +117,15 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
                 <a href="/products">Products</a>
               </li>
               <li>
-                <Link to="/" title="Remix" className="">
-                  <IconCart />
-                  <div className="cart-icon rounded-full bg-red-700 text-white">
-                    {0}
-                  </div>
+                <Link to="/carts" title="IconCart" className="" style={{display: "grid"}}>
+                  <FaShoppingCart style={{width: "1.6rem", height: "1.6rem"}}/>
+                  {
+                    cartItemsCount > 0 && (
+                      <div className="cart-icon rounded-full bg-red-700 text-white">
+                        {cartItemsCount}
+                      </div>
+                    )
+                  }
                 </Link>
               </li>
             </ul>
@@ -108,7 +137,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
       </div>
       <footer className="remix-app__footer">
         <div className="container remix-app__footer-content">
-          <p>&copy; You!</p>
+          <p>&copy; Remix Product Checkout!</p>
         </div>
       </footer>
     </div>
@@ -201,6 +230,7 @@ function IconCart(props: React.ComponentPropsWithoutRef<"svg">) {
       stroke="currentColor"
       width="2rem"
       height="2rem"
+      {...props}
     >
       <path
         strokeLinecap="round"

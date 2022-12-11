@@ -91,6 +91,8 @@ img, video {
   padding: 1px 3px;
   min-width: 1.4rem;
   text-align: center;
+  font-weight: normal;
+  font-size: 13px;
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -136,6 +138,96 @@ img, video {
   padding: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246/var(--tw-bg-opacity));
+}
+
+.remix__cart__page {
+  --space: 2rem;
+  display: grid;
+  grid-auto-rows: min-content;
+  padding-top: var(--space);
+  padding-bottom: var(--space);
+}
+.gap-1 {
+  gap: 1rem;
+}
+.gap-4 {
+  gap: 2rem;
+}
+.display-flex {
+  display: flex;
+}
+.cart-item {
+  display: flex;
+}
+.cart-row {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-start {
+  align-items: flex-start;
+}
+.basis-24 {
+  flex-basis: 6rem;
+}
+.basis-32 {
+  flex-basis: 8rem;
+}
+.basis-64 {
+  flex-basis: 24rem;
+}
+.w-32 {
+  width: 8rem;
+}
+.max-h-32 {
+  max-height: 8rem;
+}
+.items-center {
+  align-items: center;
+}
+.inline-flex {
+  display: inline-flex;
+}
+button.cart-btn {
+  cursor: pointer;
+  background-color: initial;
+  background-image: none;
+  text-transform: none;
+  box-sizing: border-box;
+  border: 0;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.font-bold {
+  font-weight: bold;
+}
+.voucherCode {
+  height: 32px;
+  padding: 5px;
+  border: 1px solid hsl(0, 0%, 50%);
+  border-radius: 5px;
+  font-weight: bold;
+}
+.cart-btn-checkout {
+  margin-left: 10px;
+  line-height: 25px;
+  border: 1px solid hsl(213, 100%, 52%);
+  border-radius: 5px;
+  padding: 2px 5px;
+  cursor: pointer;
+  background-color: hsl(213, 100%, 52%);
+  color: #e5e7eb;
+}
+.text-line-through {
+  text-decoration: line-through;
+}
+.text-red {
+  color: red;
 }
 
 @media print, screen and (min-width: 640px) {

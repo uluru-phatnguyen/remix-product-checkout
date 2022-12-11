@@ -3,43 +3,51 @@ import { json } from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import type { Product } from "~/data.server";
 import { getAllProducts } from "~/models/product.server";
+import { commitSession, getSession } from "~/session.server";
+import { addToCart } from "~/utils/cart";
 
 type LoaderData = {
   products: Awaited<Product[]>;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get('Cookie'));
+
   const products = await getAllProducts();
 
-  return json({ products });
+  return json(
+    { products },
+    { headers: { 'Set-Cookie': await commitSession(session) }}
+  );
 };
 
+export const action: ActionFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get('Cookie'));
 
-// export const action: ActionFunction = async ({ request }) => {
-//   const userId = await getUserId(request);
-//   const formData = await request.formData();
-//   const action = formData.get("action");
-//   switch (action) {
-//     case "addToCart": {
-//       const productId = formData.get("productId");
-//       await addToCart(userId, String(productId));
-//       break;
-//     }
-//     default: {
-//       throw new Response("Bad Request", { status: 400 });
-//     }
-//   }
-//   return json({ success: true });
-// };
+  const formData = await request.formData();
+  const action = formData.get("action");
+  switch (action) {
+    case "addToCart": {
+      const productId = (formData.get("productId") || "").toString();
+      await addToCart(session, productId, 1);
+      break;
+    }
+    default: {
+      throw new Response("Bad Request", { status: 400 });
+    }
+  }
+  return json(
+    { success: true },
+    { headers: { 'Set-Cookie': await commitSession(session) } }
+  );
+};
 
 export default function IndexProductRouter() {
   const { products } = useLoaderData<LoaderData>();
   return (
-    <>
-      {products?.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </>
+    products?.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ))
   );
 }
 

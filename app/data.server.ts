@@ -1,4 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
+import type { RuleProperties } from 'json-rules-engine';
+import { BOOLEAN_EXPRESSION, RULE_OPERATOR, EVENT_TYPE } from '~/utils/rule-engine';
 
 export enum PizzaSize {
   SMALL = 'S',
@@ -24,7 +25,7 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: uuidv4(),
+    id: '6db94ec1-e0be-4958-af76-22353467c22f',
     name: 'Small Pizza',
     description: '10\'\' Pizza for one person',
     size: PizzaSize.SMALL,
@@ -34,7 +35,7 @@ export const products: Product[] = [
     category: 'PIZZA',
   },
   {
-    id: uuidv4(),
+    id: '5e6ca1f4-a7b8-400e-8958-c5cbb38d3bb0',
     name: 'Medium Pizza',
     description: '12\'\' Pizza for two persons',
     size: PizzaSize.MEDIUM,
@@ -44,7 +45,7 @@ export const products: Product[] = [
     category: 'PIZZA',
   },
   {
-    id: uuidv4(),
+    id: '2fc55532-82cd-461d-aed5-2a7b941f40ab',
     name: 'Large Pizza',
     description: '15\'\' Pizza for four persons',
     size: PizzaSize.LARGE,
@@ -65,7 +66,101 @@ export interface Cart {
   currency: CurrencySymbol;
 }
 
+export const SampleRuleEngines: RuleProperties[] = [
+  {
+    name: 'microsoft',
+    conditions: {
+      [BOOLEAN_EXPRESSION.ALL]: [
+        {
+          fact: 'voucherCode',
+          operator: RULE_OPERATOR.EQUAL,
+          value: 'Microsoft',
+        },
+        {
+          fact: 'size',
+          operator: RULE_OPERATOR.EQUAL,
+          value: PizzaSize.SMALL,
+        },
+        {
+          fact: 'quantity',
+          operator: RULE_OPERATOR.GREATER_THAN_INCLUSIVE,
+          value: 3,
+        },
+      ]
+    },
+    event: {
+      type: EVENT_TYPE.DEAL,
+      params: {
+        size: PizzaSize.SMALL,
+        buy: 3,
+        deal: 2,
+      }
+    }
+  },
+  {
+    name: 'facebook',
+    conditions: {
+      [BOOLEAN_EXPRESSION.ALL]: [
+        {
+          fact: 'voucherCode',
+          operator: RULE_OPERATOR.EQUAL,
+          value: 'Facebook',
+        },
+        {
+          fact: 'size',
+          operator: RULE_OPERATOR.EQUAL,
+          value: PizzaSize.MEDIUM,
+        },
+        {
+          fact: 'quantity',
+          operator: RULE_OPERATOR.GREATER_THAN_INCLUSIVE,
+          value: 5,
+        },
+      ]
+    },
+    event: {
+      type: EVENT_TYPE.DEAL,
+      params: {
+        size: PizzaSize.MEDIUM,
+        buy: 5,
+        deal: 4,
+      }
+    }
+  },
+  {
+    name: 'amazon',
+    conditions: {
+      [BOOLEAN_EXPRESSION.ALL]: [
+        {
+          fact: 'voucherCode',
+          operator: RULE_OPERATOR.EQUAL,
+          value: 'Amazon',
+        },
+        {
+          fact: 'size',
+          operator: RULE_OPERATOR.EQUAL,
+          value: PizzaSize.LARGE,
+        },
+        {
+          fact: 'quantity',
+          operator: RULE_OPERATOR.GREATER_THAN_INCLUSIVE,
+          value: 1,
+        },
+      ]
+    },
+    event: {
+      type: EVENT_TYPE.DISCOUNT,
+      params: {
+        size: PizzaSize.LARGE,
+        price: 19.99,
+        currency: CurrencySymbol.AUD,
+      }
+    }
+  }
+];
+
 type WhereInput = { where: { id: { in: Readonly<string[]> } } };
+type WhereName = { where: { name: string } };
 
 /**
  * This mimics an ORM in the style of Prisma. `db.product.findMany` logs
@@ -84,4 +179,14 @@ export const db = {
       return products;
     },
   },
+  rule: {
+    findMany: (whereInput?: WhereName) => {
+      console.log('rule#findMany');
+      if (whereInput) {
+        return SampleRuleEngines.filter((rule) => whereInput.where.name === rule.name);
+      }
+
+      return SampleRuleEngines;
+    },
+  }
 };
